@@ -1,16 +1,13 @@
 <?php
 
-	$con = mysql_connect("localhost","root","");
-	if($con)
-	{
-		mysql_select_db("hotel",$con);
+	include("includes/config.php");
 		$query = 	"SELECT *
 					FROM tbl_room
 					INNER JOIN tbl_customer
 					ON tbl_room.room_id=tbl_customer.room_id
 					ORDER BY cust_id"
 					;
-		$result = mysql_query($query);
+		$result = mysqli_query($con,$query);
 		if($result)
 		{
 			?>
@@ -29,7 +26,7 @@
 					</tr>
 					<?php
 					
-					while($row = mysql_fetch_array($result))
+					while($row = mysqli_fetch_array($result))
 					{
 					echo "<tr>";
 						echo "<td>";
@@ -69,6 +66,6 @@
 		{
 			echo 'sds';
 		}
-	}
+	
 
 ?>

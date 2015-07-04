@@ -1,4 +1,6 @@
-
+<?php
+	include("includes/config.php");
+?>
 	<!DOCTYPE html>
 <html lang="en">
     <head>
@@ -45,13 +47,9 @@
 			<section class="main">
 				<form class="form-1">
 					<p class="field">
-							<?php
-		$con = mysql_connect("localhost","root","");
-		if($con)
-		{
-				mysql_select_db("hotel",$con);
-				$result1 = mysql_query("SELECT * FROM tbl_room where room_status = 'false' && room_type='AC' ");
-				$result2 = mysql_query("SELECT * FROM tbl_room where room_status = 'false' && room_type='NON-AC' ");
+							<?php		
+				$result1 = mysqli_query($con,"SELECT * FROM tbl_room where room_status = 'false' && room_type='AC' ");
+				$result2 = mysqli_query($con,"SELECT * FROM tbl_room where room_status = 'false' && room_type='NON-AC' ");
 				
 				?>
 					<table border='1'>
@@ -64,7 +62,7 @@
 						
 							
 								<?php
-									while($row = mysql_fetch_array($result1))
+									while($row = mysqli_fetch_array($result1))
 										
 									{
 										?><tr><td><?php
@@ -93,7 +91,7 @@
 							
 								<?php
 								
-									while($row = mysql_fetch_array($result2))
+									while($row = mysqli_fetch_array($result2))
 									{
 										?><tr><td><?php
 										?><a href="customer.php?roomno=<?php echo $row['room_no']; ?>&roomtype=<?php echo $row['room_type'] ?>"><?php echo $row['room_no']; ?></a><?php
@@ -105,11 +103,6 @@
 						
 						
 					</table>
-				<?php
-		}
-		
-	?>
-
 					</p>
 				</form>
 			</section>
