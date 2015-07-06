@@ -5,8 +5,8 @@
 		$con = mysql_connect("localhost","root","");
 		if($con)
 		{
-			$date = new DateTime('now', new DateTimeZone('Asia/Kolkata'));
-			$checkoutdate =  $date->format('Y-d-m h:i:s');
+			
+			$checkoutdate = $_POST['checkout'];
 			mysql_select_db("hotel",$con);
 			$roomid = $_GET['id'];
 			$custid = $_GET['custid'];
