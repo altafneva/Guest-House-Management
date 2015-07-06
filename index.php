@@ -208,7 +208,7 @@
                                     
                                 </div>
                             </div>
-                        </div>
+							</div>
 						
 							<?php
 						}
@@ -217,16 +217,18 @@
 						{
 							?>
 							
-						<div class="col-md-3">
-                            <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-red"><i class="fa fa-check-square-o"></i></span>
+						
+                            <div class="room_box">
+							</div>
+                        
+						 <!--<div class="sm-st clearfix">
+                                 <span class="sm-st-icon st-red"><span style="font-size:18px;"><a href="customer.php?roomno=<?php// echo $row['room_id']; ?>&roomtype=<?php// echo $row['room_type'] ?>"><?php// echo $row['room_no']; echo $row['room_type'];?></a></th>
+								 </span></span>
                                  
-							   <div class="sm-st-info">
-							   <span><a href="customer.php?roomno=<?php echo $row['room_id']; ?>&roomtype=<?php echo $row['room_type'] ?>"><?php echo $row['room_no']; echo $row['room_type'];?></a></th>
-								</span>
-                                    </div>
-                            </div>
-                        </div>
+							    <div class="sm-st-info">
+							   
+                                     </div>
+                             </div> -->
 						
 									
 							<?php

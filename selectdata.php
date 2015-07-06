@@ -99,71 +99,7 @@ session_start();
                 <!-- Main content -->
                 <section class="content">
 
-                    <div class="row" style="margin-bottom:5px;">
-
-
-                        <div class="col-md-3">
-                            <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-red"><i class="fa fa-check-square-o"></i></span>
-                                <div class="sm-st-info">
-                                    <span><?php 
-									
-									$query = "select * from tbl_room where room_status='false'";
-									$result = mysqli_query($con,$query);
-										if($result)
-										{$counter=0;
-											while($row = mysqli_fetch_array($result))
-											{
-												$counter++;
-											}
-										}
-										echo "$counter";
-									 ?></span>
-                                    Rooms Avalable 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-violet"><i class="fa fa-envelope-o"></i></span>
-                                <div class="sm-st-info">
-                                    <span><?php if($con){ 
-									
-									$query = "select * from tbl_room where room_status='true'";
-									$result = mysqli_query($con,$query);
-										if($result)
-										{$counter=0;
-											while($row = mysqli_fetch_array($result))
-											{
-												$counter++;
-											}
-										}
-										echo "$counter";
-									} ?></span>
-                                    Occupied Rooms 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-blue"><i class="fa fa-dollar"></i></span>
-                                <div class="sm-st-info">
-                                    <span>0</span>
-                                    Maintainence 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-green"><i class="fa fa-paperclip"></i></span>
-                                <div class="sm-st-info">
-                                    <span>5</span>
-                                    Total
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    
                     <!-- Main row -->
                     <div class="row">
 
