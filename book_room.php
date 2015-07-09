@@ -1,9 +1,23 @@
-<?php include("config.php");?>
-	<!DOCTYPE html>
-<html lang="en">
-  
-  <html>
-<head>
+<?php include"config.php";
+session_start();
+$query_selectRooms = "SELECT * FROM tbl_room";
+$result_selectRooms = mysqli_query($con,$query_selectRooms);
+?>
+<html>
+	<head>
+		<title></title>
+		<style type="text/css">
+
+.custom-date-style {
+	background-color: red !important;
+}
+
+</style>
+
+		<link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css"/>
+		<script src="jquery.js"></script>
+<script src="jquery.datetimepicker.js"></script>
+
     <meta charset="UTF-8">
     <title>VIEW All</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -38,23 +52,56 @@
    
       </head>
       <body class="skin-black">
-        <!-- header logo: style can be found in header.less -->
+ 
+	 <!-- header logo: style can be found in header.less -->
         <header class="header">
             <a href="index.html" class="logo">
                 Sabar Guest House
             </a>
             <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
 				
-        </header>
+                <!-- Sidebar toggle button-->
+                <!--<a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>-->
+                <div class="navbar-right">
+				
+           </div>
+                    </nav>
+                </header>
                 <div class="wrapper row-offcanvas row-offcanvas-left">
                     <!-- Left side column. contains the logo and sidebar -->
                     <aside class="left-side sidebar-offcanvas">
                         <!-- sidebar: style can be found in sidebar.less -->
                         <section class="sidebar">
-                           
+                            <!-- Sidebar user panel -->
+                            <div class="user-panel">
+                                <div class="pull-left image">
+                                    <img src="img/26115.jpg" class="img-circle" alt="User Image" />
+                                </div>
+                                <div class="pull-left info">
+                                    <p>Hello, Jane</p>
+
+                                  <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                                </div>
+                            </div>
+                            <!-- search form -->
+                            <form action="#" method="get" class="sidebar-form">
+                                <div class="input-group">
+                                    <input type="text" name="q" class="form-control" placeholder="Search..."/>
+                                    <span class="input-group-btn">
+                                        <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                                    </span>
+                                </div>
+                            </form>
+                            <!-- /.search form -->
                             <!-- sidebar menu: : style can be found in sidebar.less -->
-                           <ul class="sidebar-menu">
-							<li class="active">
+                            <ul class="sidebar-menu">
+							<li>
                             <a href="index.php">
                                 <i class="fa fa-glass"></i> <span>Room Status</span>
                             </a>
@@ -76,16 +123,7 @@
                                 <i class="fa fa-dashboard"></i> <span>View All</span>
                             </a>
                         </li>
-						<li>
-                            <a href="book_room.php">
-                                <i class="fa fa-glass"></i> <span>Book Room</span>
-                            </a>
-                        </li>
-                        <li >
-                            <a href="view_bookings.php">
-                                <i class="fa fa-gavel"></i> <span>View Bookings</span>
-                            </a>
-                        </li>
+                        
 
 
                             </ul>
@@ -103,9 +141,9 @@
 
                         <div class="col-md-3">
                             <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-violet"><i class="fa fa-check-square-o"></i></span>
+                                <span class="sm-st-icon st-red"><i class="fa fa-check-square-o"></i></span>
                                 <div class="sm-st-info">
-                                    <span><?php if($con){ 
+                                    <span><?php 
 									
 									$query = "select * from tbl_room where room_status='false'";
 									$result = mysqli_query($con,$query);
@@ -117,14 +155,14 @@
 											}
 										}
 										echo "$counter";
-									} ?></span>
+									 ?></span>
                                     Rooms Avalable 
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-red"><i class="fa fa-envelope-o"></i></span>
+                                <span class="sm-st-icon st-violet"><i class="fa fa-envelope-o"></i></span>
                                 <div class="sm-st-info">
                                     <span><?php if($con){ 
 									
@@ -145,9 +183,18 @@
                         </div>
                         <div class="col-md-3">
                             <div class="sm-st clearfix">
+                                <span class="sm-st-icon st-blue"><i class="fa fa-dollar"></i></span>
+                                <div class="sm-st-info">
+                                    <span>0</span>
+                                    Maintainence 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="sm-st clearfix">
                                 <span class="sm-st-icon st-green"><i class="fa fa-paperclip"></i></span>
                                 <div class="sm-st-info">
-                                    <span>5</span>
+                                     <span>5</span>
                                     Total Rooms
                                 </div>
                             </div>
@@ -180,84 +227,51 @@
 								</div>
                     <div class="row">
 
-                        <div class="col-md-9">
-                            <section class="panel">
+                       
+		
+				<div class="col-lg-6">
+                          <section class="panel">
                               <header class="panel-heading">
-                                  Room Status...
-                            </header>
-                            <div class="panel-body table-responsive">
-							 
-				<?php
-
-				
-				//$result = mysql_query("SELECT * FROM tbl_room where room_type='NON-AC'");
-				$result1 = mysqli_query($con,"SELECT * FROM tbl_room ");
-				if($result1)
-				{
-				
-					while($row = mysqli_fetch_array($result1))
-					{
-						if($row['room_status'] == 'true')
-						{
-							?>
-						
-							
-							<div class="room_box" style="background-color:#f05050;">
-							<span> <?php echo "<b>".$row['room_no']."</br>"; echo $row['room_type']."</br>"; echo $row['bed_type'];?> </span>
-							</div>
-							
-							<?php
-						}
-						
-						if($row['room_status'] == 'false')
-						{
-							?>
-							
-						
-                            <a href="customer.php?roomno=<?php echo $row['room_id']; ?>&roomtype=<?php echo $row['room_type'] ?>">
-							<div class="room_box">
-							<span> <?php echo "<b>".$row['room_no']."</b></br>"; echo $row['room_type']."</br>"; echo $row['bed_type'];?> </span>
-							</div>
-							</a>
-                        
-						 <!--<div class="sm-st clearfix">
-                                 <span class="sm-st-icon st-red"><span style="font-size:18px;"><a href="customer.php?roomno=<?php// echo $row['room_id']; ?>&roomtype=<?php// echo $row['room_type'] ?>"><?php// echo $row['room_no']; echo $row['room_type'];?></a></th>
-								 </span></span>
-                                 
-							    <div class="sm-st-info">
-							   
+                                  Customer Details...
+                              </header>
+                              <div class="panel-body">
+                                  <form role="form" action="booking_code.php" method="POST">
+                                      <div class="form-group">
+                                          <label for="exampleInputEmail1">Customer Name</label>
+                                          <input type="text" name="custname" class="form-control" id="exampleInputEmail1" placeholder="Enter Name">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="exampleInputEmail1">Customer Address</label>
+                                          <input type="text" name="custaddress" class="form-control" id="exampleInputEmail1" placeholder="Enter Address">
+                                      </div>
+                                     <div class="form-group">
+                                          <label for="exampleInputEmail1">Customer Mobile No.</label>
+                                          <input type="text" name="custmobno" class="form-control" id="exampleInputEmail1" placeholder="Enter Mobile No">
+                                      </div>
+									  <div class="form-group">
+									  <label for="exampleInputEmail1">Select Room</label> <br/>
+									 <select name="cmbRoom">
+									 <option value="" disabled selected>--- Select Room ---</option>
+									 <?php while($row_selectRooms = mysqli_fetch_array($result_selectRooms)){ ?>
+										<option value="<?php echo $row_selectRooms['room_id'] ?>"> <?php echo $row_selectRooms['room_no']." - ".$row_selectRooms['room_type']." - ".$row_selectRooms['bed_type']; ?> </option>
+									 <?php } ?>
+									 </select>
+									 </div>
+                                     <div class="form-group">
+                                          <label for="exampleInputEmail1">Check In</label>
+                                          <input type="text" name="checkin" value="" class="form-control" id="datetimepicker_mask"/>
                                      </div>
-                             </div> -->
-						
-									
-							<?php
-						}
-						
-						
-						
-						
-					}
-						
-				}
-				
-				
-		
+									 <div class="form-group">
+                                          <label for="exampleInputEmail1">Check Out</label>
+                                          <input type="text" name="checkout" value="" class="form-control" id="datetimepicker_mask1"/>
+                                     </div>
+                                      <button type="submit" name="btn_submit" class="btn btn-info">Submit</button>
+                                  </form>
 
-?>
-
-
-	
-	</body>
-
-                  </div>
-              </section>
-
-
-          </div>
-		
-                    </div>
-                    <div class="row">
-                        <div class="col-md-5">
+                              </div>
+                          </section>
+                      </div>
+		 <div class="col-md-5">
                           
                 </section><!-- /.content -->
                 <div class="footer-main">
@@ -265,9 +279,9 @@
                 </div>
             </aside><!-- /.right-side -->
 
-        </div><!-- ./wrapper -->
-
-
+        </div>
+	</body>
+	
         <!-- jQuery 2.0.2 -->
        <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <script src="js/jquery.min.js" type="text/javascript"></script>
@@ -362,5 +376,151 @@
             // Chart.defaults.global.responsive = true;
 </script>
 
- 
-	</html>
+</html>
+<?php
+	if(isset($_GET['roomtype'])) 
+	{
+		
+		$room_no = $_GET['roomno'];
+		$room_type = $_GET['roomtype'];
+		
+		
+		
+		$_SESSION['roomno'] = $room_no;
+		$_SESSION['roomtype'] = $room_type;
+		
+	
+	}
+
+?>
+<script>/*
+window.onerror = function(errorMsg) {
+	$('#console').html($('#console').html()+'<br>'+errorMsg)
+}*/
+$('#datetimepicker').datetimepicker({
+dayOfWeekStart : 1,
+lang:'en',
+disabledDates:['1986/01/08','1986/01/09','1986/01/10'],
+startDate:	'1986/01/05'
+});
+$('#datetimepicker').datetimepicker({value:'2015/04/15 05:03',step:10});
+
+$('.some_class').datetimepicker();
+
+$('#default_datetimepicker').datetimepicker({
+	formatTime:'H:i',
+	formatDate:'d.m.Y',
+	//defaultDate:'8.12.1986', // it's my birthday
+	defaultDate:'+03.01.1970', // it's my birthday
+	defaultTime:'10:00',
+	timepickerScrollbar:false
+});
+
+$('#datetimepicker10').datetimepicker({
+	step:5,
+	inline:true
+});
+$('#datetimepicker_mask').datetimepicker({
+	mask:'9999/19/39 29:59'
+});
+$('#datetimepicker_mask1').datetimepicker({
+	mask:'9999/19/39 29:59'
+});
+
+$('#datetimepicker1').datetimepicker({
+	datepicker:false,
+	format:'H:i',
+	step:5
+});
+$('#datetimepicker2').datetimepicker({
+	yearOffset:222,
+	lang:'ch',
+	timepicker:false,
+	format:'d/m/Y',
+	formatDate:'Y/m/d',
+	minDate:'-1970/01/02', // yesterday is minimum date
+	maxDate:'+1970/01/02' // and tommorow is maximum date calendar
+});
+$('#datetimepicker3').datetimepicker({
+	inline:true
+});
+$('#datetimepicker4').datetimepicker();
+$('#open').click(function(){
+	$('#datetimepicker4').datetimepicker('show');
+});
+$('#close').click(function(){
+	$('#datetimepicker4').datetimepicker('hide');
+});
+$('#reset').click(function(){
+	$('#datetimepicker4').datetimepicker('reset');
+});
+$('#datetimepicker5').datetimepicker({
+	datepicker:false,
+	allowTimes:['12:00','13:00','15:00','17:00','17:05','17:20','19:00','20:00'],
+	step:5
+});
+$('#datetimepicker6').datetimepicker();
+$('#destroy').click(function(){
+	if( $('#datetimepicker6').data('xdsoft_datetimepicker') ){
+		$('#datetimepicker6').datetimepicker('destroy');
+		this.value = 'create';
+	}else{
+		$('#datetimepicker6').datetimepicker();
+		this.value = 'destroy';
+	}
+});
+var logic = function( currentDateTime ){
+	if (currentDateTime && currentDateTime.getDay() == 6){
+		this.setOptions({
+			minTime:'11:00'
+		});
+	}else
+		this.setOptions({
+			minTime:'8:00'
+		});
+};
+$('#datetimepicker7').datetimepicker({
+	onChangeDateTime:logic,
+	onShow:logic
+});
+$('#datetimepicker8').datetimepicker({
+	onGenerate:function( ct ){
+		$(this).find('.xdsoft_date')
+			.toggleClass('xdsoft_disabled');
+	},
+	minDate:'-1970/01/2',
+	maxDate:'+1970/01/2',
+	timepicker:false
+});
+$('#datetimepicker9').datetimepicker({
+	onGenerate:function( ct ){
+		$(this).find('.xdsoft_date.xdsoft_weekend')
+			.addClass('xdsoft_disabled');
+	},
+	weekends:['01.01.2014','02.01.2014','03.01.2014','04.01.2014','05.01.2014','06.01.2014'],
+	timepicker:false
+});
+var dateToDisable = new Date();
+	dateToDisable.setDate(dateToDisable.getDate() + 2);
+$('#datetimepicker11').datetimepicker({
+	beforeShowDay: function(date) {
+		if (date.getMonth() == dateToDisable.getMonth() && date.getDate() == dateToDisable.getDate()) {
+			return [false, ""]
+		}
+
+		return [true, ""];
+	}
+});
+$('#datetimepicker12').datetimepicker({
+	beforeShowDay: function(date) {
+		if (date.getMonth() == dateToDisable.getMonth() && date.getDate() == dateToDisable.getDate()) {
+			return [true, "custom-date-style"];
+		}
+
+		return [true, ""];
+	}
+});
+$('#datetimepicker_dark').datetimepicker({theme:'dark'})
+
+
+</script>

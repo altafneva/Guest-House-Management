@@ -220,6 +220,9 @@
                                       <th>Customer Address</th>
                                       <!-- <th>Price</th> -->
 									    <th>Room No</th>
+											
+                                      <th>Extra Bed</th>
+                                 
                                       <th>Room Type</th>
                                  
 									  <th>Check Out</th>
@@ -246,6 +249,9 @@
 						echo "</td>";
 						echo "<td>";
 								echo $row['room_no'];
+						echo "</td>";
+						echo "<td>";
+								echo $row['extra_bed'];
 						echo "</td>";
 						echo "<td>";
 								echo $row['room_type'];

@@ -4208,3 +4208,20 @@ padding: 6px 10px;
 .st-blue {
   background-color: #23b7e5;
 }
+
+/* Our own Style */
+.room_box {
+	width:100px;
+	height:100px;
+	background-color:#7266ba;
+	display:inline-block;
+	border:2px solid black;
+	margin-bottom:5px;
+}
+.room_box span {
+	display:block;
+	color:white;
+	text-align:center;
+	margin-top:15px;
+	text-decoration:blink;
+}

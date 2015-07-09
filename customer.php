@@ -1,4 +1,5 @@
-<?php include"config.php";?>
+<?php include"config.php";
+session_start();?>
 <html>
 	<head>
 		<title></title>
@@ -139,7 +140,7 @@
                             <div class="sm-st clearfix">
                                 <span class="sm-st-icon st-red"><i class="fa fa-check-square-o"></i></span>
                                 <div class="sm-st-info">
-                                    <span><?php if($con){ 
+                                    <span><?php 
 									
 									$query = "select * from tbl_room where room_status='false'";
 									$result = mysqli_query($con,$query);
@@ -151,7 +152,7 @@
 											}
 										}
 										echo "$counter";
-									} ?></span>
+									 ?></span>
                                     Rooms Avalable 
                                 </div>
                             </div>
@@ -223,7 +224,7 @@
 								</div>
                     <div class="row">
 
-                        >
+                       
 		
 				<div class="col-lg-6">
                           <section class="panel">
@@ -243,6 +244,10 @@
                                      <div class="form-group">
                                           <label for="exampleInputEmail1">Customer Mobile No.</label>
                                           <input type="text" name="custmobno" class="form-control" id="exampleInputEmail1" placeholder="Enter Mobile No">
+                                      </div>
+									   <div class="form-group">
+                                          <label for="exampleInputEmail1">Extra Bed</label>
+                                          <input type="text" name="extrabed" class="form-control" id="exampleInputEmail1" placeholder="Enter Extra Bed">
                                       </div>
                                      <div class="form-group">
                                           <label for="exampleInputEmail1">Check In</label>
@@ -365,23 +370,6 @@
 </script>
 
 </html>
-<?php
-	session_start();
-	if(isset($_GET['roomtype'])) 
-	{
-		
-		$room_no = $_GET['roomno'];
-		$room_type = $_GET['roomtype'];
-		
-		
-		
-		$_SESSION['roomno'] = $room_no;
-		$_SESSION['roomtype'] = $room_type;
-		
-	
-	}
-
-?>
 <script>/*
 window.onerror = function(errorMsg) {
 	$('#console').html($('#console').html()+'<br>'+errorMsg)

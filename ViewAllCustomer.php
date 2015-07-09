@@ -213,6 +213,8 @@
                                       <!-- <th>Price</th> -->
 									    <th>Room No</th>
                                       <th>Room Type</th>
+									  <th>Extra Bed</th>
+									  
                                       <th>Check In</th>
 									  <th>Check Out</th>
 									  <th>Edit</th>
@@ -221,12 +223,12 @@
                               </thead>
 				<tbody>
 					<?php
-					
+					$i=1;
 					while($row = mysqli_fetch_array($result))
 					{
 					echo "<tr>";
 						echo "<th>";
-								echo $row['cust_id'];
+								echo $i;
 						echo "</th>";
 						echo "<td>";
 								echo $row['cust_name'];
@@ -244,10 +246,14 @@
 								echo $row['room_type'];
 						echo "</td>";
 						echo "<td>";
-								echo $row['checkin'];
+								echo $row['extra_bed'];
+						echo "</td>";
+						
+						echo "<td>";
+								echo date('j-M-Y, g:i A',strtotime($row['checkin']));
 						echo "</td>";
 						echo "<td>";
-								echo $row['checkout'];
+								echo date('j-M-Y, g:i A',strtotime($row['checkout']));
 						echo "</td>";
 						echo "<td>";
 								?> <a href="selectdata.php?id=<?php echo $row['cust_id']; ?>" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></a> <?php
@@ -256,6 +262,7 @@
 								?> <a href="deletedata.php?id=<?php echo $row['cust_id']; ?>" class="btn btn-default btn-xs"><i class="fa fa-times"></i></a> <?php
 						echo "</td>";
 					echo "</tr>";
+					$i++;
 					}
 					?>
 					 </tbody>

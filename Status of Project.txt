@@ -1,0 +1,11 @@
+Change Log:
+1) Created a new table 'booking' with two foreign keys from tbl_cutomer and tbl_rooms;
+2) Made a new page to enter the new bookings which will require customer details, room to book, and checkin and checkout dates;
+3) Made a new page which will display all the bookings;
+
+
+Needed changes:
+1) Place a script while deleting customers to warn user of deletion of data;
+2) Apply the template on the page view_bookings.php;
+3) Add the links of "Book Room" and "View Bookings" in all the existing pages;
+4) Add script on every page with insertion,updation or deletion of data. For e.g while booking a room it should give the confirmation at the end that he room has been booked successfully;
